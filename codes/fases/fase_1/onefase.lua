@@ -1,5 +1,7 @@
-function love.draw( ... )
-	
+
+function labirinto_fase_one()
+	--love.graphics.rectangle( modo, x, y, largura, altura )
+	--1 (amarelo)
 	love.graphics.setColor(247, 212, 14)
 	love.graphics.rectangle("fill",  0,     0, 80, 500 )
 	--2 (vermelho)
