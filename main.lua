@@ -1,119 +1,69 @@
--- require ('pasta/arquivo')
-require('codes/fase_1/onefase')
+-- require ('pasta/pasta/arquivo')
+require('codes/fases/fase_1/onefase')
 
 function love.load()
 
-ponei1 = {}
+
 xone = 300
 yone = 300
 
-ponei2 = {}
-xtwo = 200
-ytwo = 200
-
-comida1 = {}
-xc1=250
-yc1= 250
-
-comida2 = {}
-xc2=100
-yc2= 100
-
- --[[ cores]]
- h1 = 246
- h2 = 255
- h3 = 94
 
 end
 
-function love. update(dt)
+function love.update(dt)
 -- movimentar meu personagem one(um) pelo labirinto
-	if love.keyboard.isDown("right") and xone <= 750 then
-        xone = xone + 100 *dt
+xone = 300
+yone = 300
+	if love.keyboard.isDown('right') then
+        xone = xone + 100 * dt
     end
-	if love.keyboard.isDown("left") and xone >= 50 then
+	if love.keyboard.isDown('left') then
         xone = xone - 100 *dt
     end
-	if love.keyboard.isDown("down") and yone <= 550 then
+	if love.keyboard.isDown('down') then
         yone = yone + 100 *dt
     end
-	if love.keyboard.isDown("up") and yone >= 50 then
+	if love.keyboard.isDown('up') then
         yone = yone - 100 *dt
     end
---[[
--- movimentar meu personagem two(dois) pelo labirinto
-	if love.keyboard.isDown("d") and xtwo <= 750 then
-        xtwo = xtwo + 100 *dt
-    end
-	if love.keyboard.isDown("a") and xtwo >= 50 then
-        xtwo = xtwo - 100 *dt
-    end
-	if love.keyboard.isDown("s") and ytwo <= 550 then
-        ytwo = ytwo + 100 *dt
-    end
-	if love.keyboard.isDown("w") and ytwo >= 50 then
-        ytwo = ytwo - 100 *dt
-    end
+end    
+
+function love.draw(  )
+love.graphics.setColor(255, 255, 255)
+love.graphics.rectangle("fill", 300,  300, 32, 32 )
+
+
+
+    love.graphics.setColor(247, 212, 14)
+    love.graphics.rectangle("fill",  0,     0, 80, 500 )
+    --2 (vermelho)
+    love.graphics.setColor(226, 4, 4)
+    love.graphics.rectangle("fill", 80,  0, 800, 80)
+    --3 (branco)
+    love.graphics.setColor(255, 255, 255)
+    love.graphics.rectangle("fill", 70,  400, 525, 80 )
+    --4 (azul)
+    love.graphics.setColor(44, 49, 186)
+    love.graphics.rectangle("fill", 495,  170, 100, 230 )
+    --5-- (verde)
+    love.graphics.setColor(84, 186, 44)
+    love.graphics.rectangle("fill", 150,  550, 600, 80 )
+    --6-- (rosa)
+    love.graphics.setColor(206, 4, 162)
+    love.graphics.rectangle("fill", 700,  80, 100, 600 )
+    --[[ 7 (azul ciano)
+    love.graphics.setColor(64, 225, 247)
+    love.graphics.rectangle("fill", 0,  0, 150, 80)
+    ]]
+    -- 8 (roxo)
+    love.graphics.setColor(124, 450, 247)
+    love.graphics.rectangle("fill", 200,  170, 310, 80 )
+    --[[9 (verde neon)
+    love.graphics.setColor(0, 255, 38)
+    love.graphics.rectangle("fill", 300,  0, 150, 600 )
+    --10 (cinza)
+    love.graphics.setColor(108, 132, 112)
+    love.graphics.rectangle("fill", 226,  0, 150, 600 )
 ]]
 
-
-
 end
-
---[[function love.draw ()
--- high score jogador 1
--- high score do jogador 2
--- vidas jogador 1
--- vidas jogador 2
--- menu
--- mostrar quem ganhou
--- mostrar quem perdeu
--- pedir pr o usuário inserir o nome e mostrar em cima do avatar
-
-
-
-
---[[
-love.graphics.circle( modo, x, y, raio, segmentos )
-
-	 love.graphics.circle("fill", xc2, yc2, 15)
-	 love.graphics.setColor(h1, h2, h3)
-
-     love.graphics.circle("fill", xc1, yc1, 15)
-	 love.graphics.setColor(239, 249, 97)
-	 
-
-	 love.graphics.setColor(5, 1, 135)
-	 love.graphics.circle( "fill", xtwo, ytwo, 50)
-
-
-	 love.graphics.setColor(246, 0, 255)
-	 love.graphics.circle( "fill", xone, yone, 50) 
-
-
---love.graphics.rectangle( modo, x, y, largura, altura )
-
-	  love.graphics.setColor(66, 134, 244)
-	  love.graphics.rectangle("fill", 120, 110, 60, 380 )
-
-	  love.graphics.setColor(65, 244, 65)
-	  love.graphics.rectangle ("fill", 300, 110, 60, 380 )
-
-	  love.graphics.setColor(244, 226, 66)
-	  love.graphics.rectangle ("fill", 480, 110, 60, 380 )
-
-	  love.graphics.setColor(244, 226, 66)
-	  love.graphics.rectangle ("fill", 490, 110, 145, 60 )
-end
-
-
-function checaColisao ()
--- colisão do jogador 1 com os blocos do labirinto (game over)
--- colisão do jogador 2 com os bloco do labirinto  (game over)
--- colisão do jogador 1 com o jogaodr 2 e vice-versa (game over)
-
--- colisão dos jogadores com vidas extras (aumenta vida)
-
-end
-
-]]
