@@ -1,3 +1,6 @@
+-- require ('pasta/arquivo')
+require('codes/fase_1/onefase')
+
 function love.load()
 
 ponei1 = {}
@@ -57,7 +60,7 @@ function love. update(dt)
 
 end
 
-function love.draw ()
+--[[function love.draw ()
 -- high score jogador 1
 -- high score do jogador 2
 -- vidas jogador 1
@@ -78,14 +81,14 @@ love.graphics.circle( modo, x, y, raio, segmentos )
 
      love.graphics.circle("fill", xc1, yc1, 15)
 	 love.graphics.setColor(239, 249, 97)
-	 ]]
+	 
 
 	 love.graphics.setColor(5, 1, 135)
 	 love.graphics.circle( "fill", xtwo, ytwo, 50)
 
 
 	 love.graphics.setColor(246, 0, 255)
-	 love.graphics.circle( "fill", xone, yone, 50)
+	 love.graphics.circle( "fill", xone, yone, 50) 
 
 
 --love.graphics.rectangle( modo, x, y, largura, altura )
@@ -113,3 +116,4 @@ function checaColisao ()
 
 end
 
+]]
