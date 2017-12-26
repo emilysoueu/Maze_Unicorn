@@ -1,5 +1,16 @@
 
 function labirinto_fase_one()
+
+
+	fundo = love.graphics.newImage("image/mazes/maze_one.jpg")
+
+	planoDeFundo = {
+	x = 0,
+	y = 0,
+	y2 = 0 - fundo : getHeight ()
+
+	}
+
 	--love.graphics.rectangle( modo, x, y, largura, altura )
 	
 	--1 (amarelo)

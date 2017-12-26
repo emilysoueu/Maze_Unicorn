@@ -4,6 +4,6 @@ function love.conf(t)
 --  t.url = 'https://github.com/tylerneylon/pacpac'
   t.identity = 'mazeunicorn'
 
-  t.window.width = 1280
-  t.window.height = 720
+  t.window.width = 1024
+  t.window.height = 728
 end

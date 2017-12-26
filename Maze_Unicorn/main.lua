@@ -1,10 +1,21 @@
 -- require ('pasta/pasta/pasta/arquivo')
-require "codes/fases/fase_1/onefase"
+
 require "codes/move/movimentos"
+--require "codes/menu"
 require "codes/colisao/barramento_fase_one"
+require "codes/fases/fase_1/onefase"
+--require "codes/fases/fase_2/twofase"
+--require "codes/fases/fase_3/threfase"
+--require "codes/fases/fase_4/fourfase"
+
 
 
 function love.load()
+	--estadoJogo = "menu"
+	--menu_load()
+
+
+
 	--personage
 	unicorn = {}
 	xone = 0
@@ -39,7 +50,10 @@ function love.update(dt)
     --movimento do personagem
 
     -- colisao
-      fase_one_colisao_update(dt)
+     fase_one_colisao_update(dt)
+     --fase_two_colisao_update(dt)
+    -- fase_thre_colisao_update(dt)
+     --fase_four_colisao_update(dt)
     --colisao
 
 end
@@ -48,13 +62,15 @@ end
 function love.draw()
 
 
---[[
---- background
- love.graphics.draw( fundo, planoDeFundo.x, planoDeFundo.y)
- love.graphics.draw( fundoDois, planoDeFundo.x,planoDeFundo.y2 )
--- background
-]]
+
+
+
 	--love.graphics.rectangle( modo, x, y, largura, altura )
+
+	-- plano de fundo fase 1
+	--love.graphics.setColor(244, 66, 185)
+	--love.graphics.draw( fundo, planoDeFundo.x, planoDeFundo.y)
+	--plano de fundo fase 1
 
 
 	-- personagem
@@ -66,7 +82,10 @@ function love.draw()
 
 	--desenho do lairinto
 	labirinto_fase_one (dt)
+
 	--love.graphics.rectangle( modo, x, y, largura, altura )
+
+
 
 end
   
