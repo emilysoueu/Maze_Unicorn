@@ -1,6 +1,4 @@
-require "functions/rectangle"
---require "functions/instruction"
---require "instruction/fase_um/one_fase"
+require "functions/rectangle" -- funcao para toque do mouse
 
 function menu_load()
 	-- posicao mouse
@@ -9,7 +7,7 @@ function menu_load()
   	-- posicao mouse
 
 	-- background
-	
+
 	fundo = love.graphics.newImage ("image/menu_one.jpg")
 
 	planoDeFundo = {
@@ -18,25 +16,28 @@ function menu_load()
 	}
 	-- background
 
-	-- botoes
+	------ botoes
+	-- play
 	start = {}
-		 x_s = 420
-		 y_s = 380
-		 height_s = 250
-		 width_s = 110
-
+		 x_s = 410 -- posicao x
+		 y_s = 380 -- posicao y
+		 height_s = 97 -- altura
+		 width_s = 260 -- largura
+	-- sair
 	 exit = {}
-		 x_e = 740
-		 y_e = 610
-		 height_e = 220
-		 width_e = 100
+		 x_e = 770 -- posicao x
+		 y_e = 622  -- posicao y
+		 height_e = 220 -- altura
+		 width_e = 100 -- largura
+	-- sair
 
+	--instrucoes
 	 instruction = {}
-		 x_i = 40
+		 x_i = 36
 		 y_i = 620
-		 height_i = 400
-		 width_i = 60
-	--botoes
+		 height_i = 400 -- altura
+		 width_i = 60 -- largura
+	-----botoes
 
 
 	-- sons do jogo
@@ -44,23 +45,38 @@ function menu_load()
 	som_colisao : play ()
 	som_colisao : setLooping (true)
 	-- sons do jogo
-	
+
+
+
 
 end
 
 
 function menu_update(dt)
+
+	-- menu com teclas
+	if love.keyboard.isDown('p') and estadoJogo == "menu" then -- fase 1
+				one_fase()
+	end
+	if love.keyboard.isDown('i') and estadoJogo == "menu" then -- instrucoes
+				instruction()
+	end
+	if love.keyboard.isDown('s') and estadoJogo == "menu" then -- sair do game
+				love.event.push("quit")
+	end
+	-- menu com teclas
+
 	function love.mousepressed(x, y, button)
 		if button == 1 then
 			mx = x
 			my = y
-			if toqueretangulo(mx,my,x_i,y_i,height_i,width_i) and estadoJogo == "menu" then
+			if toqueretangulo(mx,my,x_i,y_i,width_i,height_i) and estadoJogo == "menu" then -- fase 1
 				instruction()
 			end
-			if toqueretangulo(mx, my, x_s, y_s,width_s,height_s) and estadoJogo == "menu" then
+			if toqueretangulo(mx, my, x_s, y_s,width_s,height_s) and estadoJogo == "menu" then -- instrucoes
 				one_fase()
 			end
-			if toqueretangulo(mx, my, x_e, y_e,width_e,height_e ) and estadoJogo == "menu" then
+			if toqueretangulo(mx, my, x_e, y_e,width_e,height_e ) and estadoJogo == "menu" then -- sair do game
 				love.event.push("quit")
 			end
 		end
@@ -72,14 +88,20 @@ end
 
 function menu_draw ()
 
-	
+
 	-- background
 	 love.graphics.draw( fundo, planoDeFundo.x, planoDeFundo.y)
 	-- background
 
 end
 
+-- funcoes para mudanca de fase
 function one_fase()
-	estadoJogo="one_fase"
+	estadoJogo ="one_fase" -- fase 1
 	onefase_load()
+end
+
+function instruction ()
+	estadoJogo = "instruction" -- instrucoes
+	instruction_load ()
 end

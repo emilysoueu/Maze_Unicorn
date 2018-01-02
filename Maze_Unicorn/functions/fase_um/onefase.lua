@@ -1,12 +1,11 @@
 
 function labirinto_fase_one_draw()
-
 	
-
+	--love.graphics.setColor(247, 212, 14) -> cor das barras labirintos
 	--love.graphics.rectangle( modo, x, y, largura, altura )
 	
 	--1 (amarelo)
-	--love.graphics.setColor(247, 212, 14)
+	--love.graphics.setColor(247, 212, 14) 
 	love.graphics.setColor(244, 66, 185)
 	love.graphics.rectangle("fill",  0,   0, 75, 560 )
 
@@ -86,8 +85,6 @@ function labirinto_fase_one_draw()
 	love.graphics.setColor(244, 66, 185)
 	love.graphics.rectangle("fill", 245,  230, 495, 80 )
 
-	-- portal 
-	love.graphics.setColor(247, 212, 14)
-	love.graphics.rectangle("fill",640 , 326.5 , 32, 32 )
+	
 	
 end

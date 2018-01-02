@@ -1,6 +1,4 @@
 
-
-
 function fase_one_colisao_update(dt)
 
      function checa_colisao(x1,y1,w1,h1, x2,y2,w2,h2)
@@ -9,203 +7,92 @@ function fase_one_colisao_update(dt)
                y1 < y2+h2 and
                y2 < y1+h1
     end
-  
+--[[
    -- colisão
 
     -- CODIGO PARA REPULSÃO DO PLAYER AO DETECTAR CONTATO--
-    -- 1 amarelo
-    if checa_colisao(xone,yone,32,32, 0,   0, 75, 560) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+    ---- 1 amarelo
+    if checa_colisao(player.posX, player.posY,16,16, 0,   0, 75, 560) then
+        player.posY = 700
+        player.posX = 0
     end
 
 
     -- 2 vermelho
-      if checa_colisao(xone,yone,32,32,  75,  0, 950, 80) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+      if checa_colisao(player.posX,player.posY,16,16,75,  0, 950, 80) then
+        player.posY = 700
+        player.posX = 0
     end
 
     -- 3 branco
-
-  if checa_colisao(xone,yone,32,32,75,  480, 800, 80 ) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+  if checa_colisao(player.posX,player.posY,16,16, 75,480, 800, 80 ) then
+        player.posY = 700
+        player.posX = 0
     end
 
     -- 4 azul
-    if checa_colisao(xone,yone,32,32,795,  124, 80, 380 ) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+    if checa_colisao(player.posX,player.posY,16,16,795,124, 80, 380 ) then
+       player.posY = 700
+       player.posX = 0
     end
 
 
     -- 5  verde
-    if checa_colisao(xone,yone,32,32,  80,  630, 850, 80 ) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+    if checa_colisao(player.posX ,player.posY,16,16,80,  630, 850, 80 ) then
+        player.posY = 700
+        player.posX = 0
     end
 
 
     -- 6  rosa
 
-    if checa_colisao(xone,yone,32,32, 920,  80, 100, 630) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+    if checa_colisao(player.posX ,player.posY,16,16,920,  80, 100, 630) then
+       player.posY = 700
+       player.posX = 0
     end
 
 
     -- 7  azul ciano
 
-    if checa_colisao(xone,yone,32,32,  120, 360, 635, 80) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+    if checa_colisao(player.posX, player.posY,16,16,120, 360, 635, 80) then
+        player.posY = 700
+        player.posX = 0
     end
 
 
-    -- 8  azul claro
+    --8  azul claro
 
-    if checa_colisao(xone,yone,32,32, 120,  125, 750, 65 ) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+    if checa_colisao(player.posX,player.posY,16,16,120,  125, 750, 65 ) then
+        player.posY = 700
+        player.posX = 0
     end
 
 
     -- 9  verde neon
 
-    if checa_colisao(xone,yone,32,32,  120,  180, 80, 260 ) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+    if checa_colisao(player.posX,player.posY,16,16,120,  180, 80, 260 ) then
+        player.posY = 700
+        player.posX = 0
     end
 
 
 
     -- 10 cinza
 
-if checa_colisao(xone,yone,32,32,  675,  230, 80, 140 ) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+if checa_colisao(player.posX,player.posY,16,16,675, 230, 80, 140 ) then
+       player.posY = 700
+       player.posX = 0
     end
 
 
     -- 11  rosa meio
-    if checa_colisao(xone,yone,32,32, 245,  230, 495, 80 ) then
-        if xone <= 0 then
-            xone = xone - 15
-        end
-        if yone <= 0 then
-           yone = yone - 15
-        end
-        if xone >= 0 then
-           xone = xone + 15
-        end
-        if yone >= 0 then
-           yone = yone + 15
-        end
+    if checa_colisao(player.posX,player.posY, 16,16, 245,230, 495, 80 ) then
+       player.posY = 700
+       player.posX = 0
     end
-
-    --12 portal 
-   if checa_colisao(xone,yone,32,32, xport,yport, 32, 32) and estadoJogo == "one_fase" then 
+]]
+    --12 portal
+   if checa_colisao(player.posX,player.posY,16,16, portal.x,portal.y, 32, 32) then
        two_fase()
     end
 

@@ -1,4 +1,3 @@
-require "functions/menu"
 require "functions/rectangle"
 
 function instruction_load( )
@@ -17,6 +16,12 @@ end
 
 
 function instruction_update( dt )
+
+	if love.keyboard.isDown('m') and estadoJogo == "instruction" then
+				menu_load()
+	end
+
+
 	function love.mousepressed( x, y, button )
 		if button == 1 then
 			mx = x
@@ -40,6 +45,6 @@ function instruction_draw( )
 end
 
 function menu() -- Função para ser empregada a volta para o menu
-	gamestate="menu"
-	menu_load()
+	estadoJogo = "menu"
+	menu()
 end

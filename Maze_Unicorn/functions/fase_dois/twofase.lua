@@ -88,9 +88,6 @@ function labirinto_fase_two_draw()
 	love.graphics.setColor(247, 212, 14)
 	love.graphics.rectangle("fill", 600,  250, 280, 80 )
 
-
-
-
 	-- 12 (roxo)
 	--love.graphics.setColor(146, 66, 244)
 	love.graphics.setColor(247, 212, 14)
