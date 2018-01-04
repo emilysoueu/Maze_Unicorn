@@ -1,4 +1,6 @@
 require "functions/rectangle"
+--require "functions/sonsdojogo"
+
 
 function win_load(  )
 	-- posicao mouse
@@ -33,11 +35,8 @@ function win_load(  )
 	transparencia = 100
 	-- background
 
-  -- som fim  do jogo
-	som_win = love.audio.newSource ("sound/sound_win.mp3")
-	som_win : play ()
-	som_win : setLooping (true)
-	-- som fim  do jogo
+  --sound ()
+	
 	
 end
 

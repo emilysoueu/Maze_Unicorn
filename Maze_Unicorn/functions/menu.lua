@@ -1,4 +1,5 @@
 require "functions/rectangle" -- funcao para toque do mouse
+--require "functions/sonsdojogo"
 
 function menu_load()
 	-- posicao mouse
@@ -38,21 +39,20 @@ function menu_load()
 		 height_i = 400 -- altura
 		 width_i = 60 -- largura
 	-----botoes
-
-
-	-- sons do jogo
-	som_colisao = love.audio.newSource ("sound/sound_menu.mp3")
-	som_colisao : play ()
-	som_colisao : setLooping (true)
-	-- sons do jogo
-
-
-
-
+	
+	--sound ()
+	
 end
 
 
 function menu_update(dt)
+	
+
+	
+
+
+
+
 
 	-- menu com teclas
 	if love.keyboard.isDown('p') and estadoJogo == "menu" then -- fase 1
@@ -105,3 +105,6 @@ function instruction ()
 	estadoJogo = "instruction" -- instrucoes
 	instruction_load ()
 end
+
+
+ 

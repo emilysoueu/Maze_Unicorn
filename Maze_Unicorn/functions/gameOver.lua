@@ -1,3 +1,6 @@
+--require "functions/sonsdojogo"
+
+
 function gameOver_load( )
 	-- posicao mouse
 	mx = 0
@@ -14,15 +17,13 @@ function gameOver_load( )
 	transparencia = 100 
 	-- background
 
-  -- som fim do jogo
-	som_win = love.audio.newSource ("sound/sound_gameover.mp3")
-	som_win : play ()
-	som_win : setLooping (false)
-	-- som fim do jogo
+  
+	--sound ()
 	
 end
 
 function gameOver_update(dt)
+
 	
 end
 function gameOver_draw( )
@@ -34,7 +35,7 @@ end
 
 function gameOver( )
 	if estadoJogo == 'gameOver' then 
-	 	love. graphics.setColor(255,255,255,transparencia * dt )
+	 	love. graphics.setColor(255,255,255,transparencia * dt ) -- deixr as cores originais da imagem
 	 	love.graphics.draw( fundo, planoDeFundo.x, planoDeFundo.y)
 	end
 end

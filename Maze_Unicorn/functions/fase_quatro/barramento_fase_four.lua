@@ -7,7 +7,6 @@ function fase_four_colisao_update(dt)
                y1 < y2+h2 and
                y2 < y1+h1
  end
-  --[[
    -- colisão
 
     -- CODIGO PARA REPULSÃO DO PLAYER AO DETECTAR CONTATO--
@@ -15,6 +14,7 @@ function fase_four_colisao_update(dt)
     if checa_colisao(player.posX, player.posY,16,16, 0,   0, 80, 650 ) then
           player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
 
@@ -22,6 +22,7 @@ function fase_four_colisao_update(dt)
       if checa_colisao(player.posX, player.posY,16,16,75,  0, 1200, 60) then
          player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
     -- 3 branco
@@ -29,12 +30,14 @@ function fase_four_colisao_update(dt)
   if checa_colisao(player.posX, player.posY,16,16, 75,  525, 263, 80) then
          player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
     -- 4 azul
     if checa_colisao(player.posX, player.posY,16,16, 800,  99, 80, 280) then
        player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
 
@@ -42,6 +45,7 @@ function fase_four_colisao_update(dt)
     if checa_colisao(player.posX, player.posY,16,16,150,  650, 1200, 80 ) then
        player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
 
@@ -50,6 +54,7 @@ function fase_four_colisao_update(dt)
     if checa_colisao(player.posX, player.posY,16,16, 930,  125, 100, 600 ) then
        player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
 
@@ -58,6 +63,7 @@ function fase_four_colisao_update(dt)
     if checa_colisao(player.posX, player.posY,16,16, 125, 100, 329.5, 60) then
         player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
 
@@ -66,6 +72,7 @@ function fase_four_colisao_update(dt)
     if checa_colisao(player.posX, player.posY,16,16, 336,  430, 544, 80 ) then
        player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
 
@@ -74,6 +81,7 @@ function fase_four_colisao_update(dt)
     if checa_colisao(player.posX, player.posY,16,16, 258,  200, 80, 353) then
        player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
     -- 10 cinza
@@ -81,18 +89,21 @@ function fase_four_colisao_update(dt)
 if checa_colisao(player.posX, player.posY,16,16, 400,  55, 80, 200) then
        player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
     -- 11 rosa meio
     if checa_colisao(player.posX, player.posY,16,16, 520,  100, 280, 80 ) then
        player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
     -- 12 roxo
     if checa_colisao(player.posX, player.posY,16,16, 670,  235, 80, 200) then
         player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
     -- 13 vermelho baixo
@@ -100,21 +111,9 @@ if checa_colisao(player.posX, player.posY,16,16, 400,  55, 80, 200) then
     if checa_colisao(player.posX, player.posY,16,16, 470,  550, 80, 100) then
        player.posY = 700
         player.posX = 0
-    end
-]]
-    -- 14 portal
-    if checa_colisao(player.posX, player.posY,16,16, portal.x,portal.y, 16, 16)  then
-       win()
+        love.audio.play(som_toque)
     end
 
-    -- mais tempo
-     if checa_colisao(player.posX, player.posY,16,16, m_tempo.x, m_tempo.y, 32, 32)  then
-        relogy = relogy + 5
-    end
-
-    -- mais pontos
-    if checa_colisao(player.posX, player.posY,16,16, m_pontos.x, m_pontos.y, 32, 32)  then
-        relogy = relogy - 10
-    end
+    
 
 end

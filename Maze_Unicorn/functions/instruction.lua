@@ -44,7 +44,3 @@ function instruction_draw( )
 	love.graphics.rectangle("fill", 60,  580, 200, 80 )
 end
 
-function menu() -- Função para ser empregada a volta para o menu
-	estadoJogo = "menu"
-	menu()
-end

@@ -3,6 +3,8 @@ local anim8 = require "anim8.anim8"
 require "functions/personagem"
 require "functions/fase_quatro/fourfase"
 require "functions/fase_quatro/barramento_fase_four"
+require "functions/colisao" -- colisao
+
 
 function fourfase_load(  )
 	
@@ -18,6 +20,23 @@ function fourfase_load(  )
 	player_load()
 	-- personagem
 
+	-- fase
+	imgFase = love. graphics.newImage('image/four.png')
+	fase = {
+	x = 500,
+	y =  0,
+	}
+	-- fase
+
+	--vidas
+	vida = {
+	img = love.graphics.newImage ('image/vida.png'),
+	x = 700,
+	y =600,
+	}
+	-- vias
+
+
 	--portal
 	imgPortal = love. graphics. newImage('image/portal.png')
 	portal = {
@@ -26,40 +45,15 @@ function fourfase_load(  )
 	}
 	--portal
 
+	-- sons
+	som_portal = love.audio.newSource ("sound/portal.wav",'static')
+	som_toque = love.audio.newSource ("sound/toque.wav",'static')
 
 
 	-- contagem regressiva
 	relogy = 60
 	print_relogy = 0 
 	-- contagem regressiva
-
-	-- aumentar o tempo
-	maisTempo = true
-	delayMaisTempo = 0.10
-	tempoNovoMaisTempo = delayMaisTempo
-	rainbow = {}
-	arco_iris = love.graphics.newImage ('image/good_bonus.png')
-	m_tempo = {
-	x = math.random (0,300),
-	y = math.random (0,300),
-	}
-	-- aumentar o tempo
-
-	-- diminuir o tempo
-	maispontos = love.graphics.newImage('image/bad_bonus.png')
-	m_pontos = {
-	x = 550,
-	y = 300,
-	}
-	-- diminuir o tempo
-
-	-- game over
-	estaVivo = true
-	gameOver = false
-	transparencia = 0
-	imgGameOver = love.graphics.newImage('image/mazeunicorn_gameover.jpg')
-	-- game over
-
 end
 
 function fourfase_update( dt )
@@ -69,8 +63,12 @@ function fourfase_update( dt )
     --movimento do personagem
 
     -- colisao
-    fase_four_colisao_update(dt)
+   -- fase_four_colisao_update(dt)
     -- colisao
+	if checa_colisao(player.posX, player.posY,16,16, portal.x,portal.y, 16, 16)  then
+		love.audio.play(som_portal)
+        win()
+    end
 
  	-- relogio
 		relogy = relogy - dt
@@ -92,6 +90,7 @@ end
 function fourfase_draw( )
 
 	-- fundo
+	love.graphics.setBackgroundColor (255, 255, 255)
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw( fundo, planoDeFundo.x, planoDeFundo.y)
 	-- fundo
@@ -100,53 +99,63 @@ function fourfase_draw( )
 	labirinto_fase_four_draw()
 	-- desenho do labirinto
 
+	-- portal
+	love. graphics.setColor(255,255,255) -- deixr as cores originais da imagem
+	love.graphics.draw(imgPortal, portal.x, portal.y)
+	-- portal
+
+	-- fase
+	love. graphics.setColor(255,255,255) -- deixr as cores originais da imagem
+	love.graphics.draw(imgFase, fase.x, fase.y)
+	-- fase
+
+	-- vidas
+	love. graphics.setColor(255,255,255 ) -- deixr as cores originais da imagem
+	love.graphics.draw(vida.img, vida.x, vida.y)
+	-- vidas
+
 	-- relogy
-	love.graphics.setColor(226, 4, 4)
-	love.graphics.print('tempo restante: ' .. print_relogy, 400, 0 )
+	if print_relogy >=  2  then 
+		love.graphics.setColor(247, 121, 238)
+		love.graphics.setFont (numeros)
+		love.graphics.print('tempo restante: ' ..  print_relogy  .. ' segundos', 680, 30 )
+	elseif print_relogy < 2 then 
+		love.graphics.setColor(247, 121, 238)
+		love.graphics.setFont (numeros)
+		love.graphics.print('tempo restante: ' ..  print_relogy  .. ' segundo', 680, 30 )
+	end
 	-- relogy
 
-	-- portal
-	love.graphics.draw(imgPortal, portal.x, portal.y)
-	-- portal-
+	-- fase
+	--love.graphics.setColor(247, 121, 238)
+	love.graphics.setFont (palavras)
+	love.graphics.print ('Fase  ' , 400,30)
+	-- fase
+
+	-- pontuacao
+	love.graphics.setColor(247, 121, 238)
+	love.graphics.setFont (palavras)
+	love.graphics.print ('pontos ' .. (print_relogy * 100 ), 50,30)
+	--pontuacao
 
 	-- personagem
 	player_draw ()
 	-- personagem 
 
-	-- mais tempo
-	--love.graphics.draw( arco_iris, m_tempo.x, m_tempo.y)
-
-	function aumentarTempo( dt )
-		tempoNovoMaisTempo = tempoNovoMaisTempo - ( 1 * dt )
-		if tempoNovoMaisTempo < 0 then 
-			maisTempo = true
-		end
-		if maisTempo then 
-		    	menosPontos = {x = m_tempo.x, y = m_tempo.y, img = arco_iris}
-		    	table.insert (rainbow,novoRainbown)
-		    	maisTempo = false
-		    	tempoNovoMaisTempo = delayMaisTempo
-		end
-		for i, rainbow in ipairs (rainbow) do 
-				m_tempo.y = m_tempo.y - (500 * dt)
-				if  m_tempo.y < 0 then  
-					table.remove (rainbow,i)
-				end
-		end
+	function four_fase ()
+	if estadoJogo == 'four_fase' then 
+		love. graphics.setColor(255,255,255, (0 * dt) ) -- deixr as cores originais da imagem
+		love.graphics.draw(imgPortal, portal.x, portal.y) -- portal
+		love. graphics.setColor(255,255,255, (0 * dt) ) -- deixr as cores originais da imagem
+		player_draw ()  								-- personagem
+		love. graphics.setColor(255,255,255, (0 * dt) ) -- deixr as cores originais da imagem
+		love.graphics.draw(vida.img, vida.x, vida.y)	-- img vida
+		love. graphics.setColor(255,255,255, (0 * dt) ) -- deixr as cores originais da imagem
+		love.graphics.draw(imgFase, fase.x, fase.y)     -- img fase
 	end
-
-	-- mais tempo
-
-	-- mais pontos
-	love.graphics.draw( maispontos, m_pontos.x, m_pontos.y)
-	--mais pontos
+end
 
 
-	-- tela game over
-	if relogy <=  0 then
-		gameOver ()
-		--gameOver = true
-		--love.graphics.draw(imgGameOver, 0, 0)
-	end
-	-- tela game over
+	
+	
 end

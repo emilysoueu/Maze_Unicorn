@@ -8,7 +8,7 @@ function fase_two_colisao_update(dt)
                y2 < y1+h1
  end
   
-  --[[
+  
    -- colisão
 
   -- CODIGO PARA REPULSÃO DO PLAYER AO DETECTAR CONTATO--
@@ -16,6 +16,7 @@ function fase_two_colisao_update(dt)
   if checa_colisao(player.posX, player.posY,16,16, 0,   0, 80, 650 ) then
         player.posY = 700
         player.posX = 0 
+        love.audio.play(som_toque)
     end
 
 
@@ -23,6 +24,7 @@ function fase_two_colisao_update(dt)
       if checa_colisao(player.posX, player.posY,16,16, 75,  0, 1200, 60 ) then
         player.posY = 700
         player.posX = 0 
+        love.audio.play(som_toque)
     end
 
     -- 3 branco
@@ -30,12 +32,14 @@ function fase_two_colisao_update(dt)
   if checa_colisao(player.posX, player.posY,16,16, 75,  525, 805, 80 ) then
        player.posY = 700
         player.posX = 0 
+        love.audio.play(som_toque)
     end
 
     -- 4 azul
     if checa_colisao(player.posX, player.posY,16,16, 800,  250, 80, 320 ) then
         player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
 
@@ -43,6 +47,7 @@ function fase_two_colisao_update(dt)
     if checa_colisao(player.posX, player.posY,16,16, 150,  650, 1200, 80  ) then
         player.posY = 700
         player.posX = 0 
+        love.audio.play(som_toque)
     end
 
 
@@ -50,7 +55,8 @@ function fase_two_colisao_update(dt)
 
     if checa_colisao(player.posX, player.posY,16,16, 930,  125, 100, 600) then
         player.posY = 700
-        player.posX = 0  
+        player.posX = 0 
+        love.audio.play(som_toque)
     end
 
 
@@ -59,6 +65,7 @@ function fase_two_colisao_update(dt)
     if checa_colisao(player.posX, player.posY,16,16,150, 420, 329.5, 60) then
          player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
 
@@ -66,7 +73,8 @@ function fase_two_colisao_update(dt)
 
     if checa_colisao(player.posX, player.posY,16,16, 220,  125, 1000, 80  ) then
         player.posY = 700
-        player.posX = 0  
+        player.posX = 0 
+        love.audio.play(som_toque) 
     end
 
 
@@ -75,6 +83,7 @@ function fase_two_colisao_update(dt)
     if checa_colisao(player.posX, player.posY,16,16, 150,  125, 80, 353 ) then
         player.posY = 700
         player.posX = 0  
+        love.audio.play(som_toque)
     end
 
     -- 10 cinza
@@ -82,6 +91,7 @@ function fase_two_colisao_update(dt)
 if checa_colisao(player.posX, player.posY,16,16,400,  250, 80, 200 ) then
         player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
 
 
@@ -89,18 +99,13 @@ if checa_colisao(player.posX, player.posY,16,16,400,  250, 80, 200 ) then
     if checa_colisao(player.posX, player.posY,16,16,600,  250, 280, 80 ) then
        player.posY = 700
         player.posX = 0 
+        love.audio.play(som_toque)
     end
 
       -- 12  roxo
     if checa_colisao(player.posX, player.posY,16,16,529.5,  250, 80, 200 ) then
         player.posY = 700
         player.posX = 0
+        love.audio.play(som_toque)
     end
-]]
-   --12 portal
-   if checa_colisao(player.posX, player.posY,16,16, portal.x,portal.y, 16, 16)  then
-       three_fase()
-    end
-    
-
 end
