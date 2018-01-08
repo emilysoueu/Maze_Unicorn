@@ -1,13 +1,14 @@
+require "functions/colisao"
 
 function fase_four_colisao_update(dt)
-
+--[[
  function checa_colisao(x1,y1,w1,h1, x2,y2,w2,h2)
         return x1 < x2+w2 and
                x2 < x1+w1 and
                y1 < y2+h2 and
                y2 < y1+h1
  end
-   -- colisão
+   -- colisão]]
 
     -- CODIGO PARA REPULSÃO DO PLAYER AO DETECTAR CONTATO--
     -- 1 amarelo

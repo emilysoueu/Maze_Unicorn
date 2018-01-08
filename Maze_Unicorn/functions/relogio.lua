@@ -15,4 +15,3 @@ function time_draw( )
 		love.graphics.print(print_time, 680, 50 )
 end
 
-

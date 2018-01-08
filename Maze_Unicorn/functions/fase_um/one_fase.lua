@@ -5,10 +5,13 @@ require "functions/inimigo" -- inimigo
 require "functions/fase_um/onefase" -- desenho do labirinto
 require "functions/fase_um/barramento_fase_one" -- detectar colisoes
 require "functions/colisao" -- colisao
-require "functions/relogio"
-
 
 function onefase_load(  )
+
+
+	tempo1 = love.timer.getTime() --pra usar no win
+	tempo_1 = love.timer.getTime() -- pra usar no game over
+
 
 	-- bonus
 	arco = love.graphics.newImage ('image/rainbow.png')
@@ -17,58 +20,58 @@ function onefase_load(  )
   }
    -- bonus
 
+   --imagens
 	-- personagens
 	player_load()
 	inimigo_load ()
-	-- personagens
-
 	--portal
 	imgPortal = love.graphics.newImage('image/portal.png')
 	portal = {
 	x = 640,y =  326.5,
 	}
-	--portal
-
 	-- fase
 	imgFase = love. graphics.newImage('image/one.png')
 	fase = {
 	x = 500,y =  0,
 	}
-	-- fase
-
+	-- vida
 	vida = {
 	img = love.graphics.newImage ('image/vida.png'),
-	x = 700,y =600,
+	x = 950,y =650,
 	}
-
+	--morte
+	morte = {
+	img = love.graphics.newImage ('image/morte.png'),
+	x = 950,y =650,
+	}
 	-- background
 	fundo = love.graphics.newImage("image/maze_one.jpg")
 	planoDeFundo = {
 	x = 0,y = 0,
 	}
-	-- background
+	-- imagens
 
-	-- contagem regressiva
-	relogy = 180
-	print_relogy = 0
-	-- contagem regressiva
 
-	-- HighScore
-	pontos = 15
-	-- HighScore
+
+   
+	-- sons
+	som_portal = love.audio.newSource ("sound/portal.wav",'static')
+	som_toque = love.audio.newSource ("sound/toque.wav",'static')
+	rainbow =  love.audio.newSource ("sound/rainbow.wav",'static')
+	vidas =  love.audio.newSource ("sound/escudo.wav",'static')
+	
 
 	-- fontes e tamanho
 	palavras = love.graphics.setNewFont ('disney.ttf', 32)
 	numeros  =  love.graphics.setNewFont ('disney.ttf', 18)
 	-- fontes e tamanho
 
-	-- sons
-	som_portal = love.audio.newSource ("sound/portal.wav",'static')
-	som_toque = love.audio.newSource ("sound/toque.wav",'static')
-	som_trote = love.audio.newSource ("sound/trote.mp3")
-
-	time_load ()
-
+   -- contadores
+	-- contagem regressiva
+	relogy = 40
+	print_relogy = 0
+	-- HighScore
+	pontos = 15
 
 end
 
@@ -77,10 +80,11 @@ function onefase_update( dt )
 	for i, v in pairs(rainbown) do
     	if  checa_colisao(inimigo.posX, inimigo.posY,32, 32, v.x, v.y, 10, 10) then
 	      print(true)
+	      love.audio.play(rainbow)
 	      pontos = pontos - 1
 	      v.delete = true -- perguntar
 	      --table.remove(block,i)
-	      newRaibown = {x = math.random(790), y = math.random(590)}
+	      newRaibown = {x = math.random(0,900), y = math.random(80, 590)}
 	      table.insert(rainbown,newRaibown)
     	else
      	 print(false)
@@ -93,7 +97,6 @@ function onefase_update( dt )
     end
   end
 
-	time_update(dt)
 
 	--movimento dos personagens
 	player_update(dt)
@@ -101,7 +104,7 @@ function onefase_update( dt )
     --movimento dos personagens
 
     -- colisao
-    --fase_one_colisao_update(dt)
+    fase_one_colisao_update(dt)
     -- colisao
 
     -- relogio
@@ -118,10 +121,17 @@ function onefase_update( dt )
     	gameOver ()
     end
 
+    -- tela game over
+	if relogy <=  0 then
+		gameOver()
+	end
+	-- tela game over
+
 	-- funcao mudanca para fase 2
     function two_fase()
 		estadoJogo = "two_fase"
 		twofase_load()
+		
 	end
 	-- funcao mudança par fase 2
 
@@ -149,11 +159,23 @@ function onefase_draw()
 	-- desenho do labirinto
 
 	-- fase
-	love.graphics.draw(imgFase, fase.x, fase.y)
+	love.graphics.draw(imgFase, fase.x, fase.y) -- fase com letra de unicornio
 	-- fase
 
 	-- vidas
-	love.graphics.draw(vida.img, vida.x, vida.y)
+	if pontos <= 0 then
+		love.graphics.draw(morte.img,morte.x,morte.y) -- imagem p&b = o fantasma pode matar
+	else
+		love.graphics.draw(vida.img, vida.x, vida.y)   -- imagem colorida = vida
+	end 
+	 --  pontos de vida alerta
+	if pontos == 1  then 
+		love.audio.play(vidas)
+	end
+	if pontos == 0 then 
+		love.audio.stop(vidas)
+	end
+
 	-- vidas
 
 	-- relogy
@@ -180,11 +202,7 @@ function onefase_draw()
 	love.graphics.print ('Fase  ' , 400,50)
 	-- fase
 
-	-- tela game over
-	if relogy <=  0 then
-		gameOver()
-	end
-	-- tela game over
+	
 
 	-- personagens
 	player_draw ()
@@ -196,7 +214,7 @@ function onefase_draw()
     love.graphics.draw(arco, v.x, v.y)
   end
   -- rainbow
-	--time_draw ()
+
 end
 
 
