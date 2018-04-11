@@ -1,75 +1,62 @@
 -- require ('pasta/pasta/pasta/arquivo')
-require "codes/fases/fase_1/onefase"
-require "codes/move/movimentos"
-require "codes/colisao/barramento_fase_one"
+require "functions/menu" 				 	 -- menu
+require "functions/instruction" 		     -- instrução
+require "functions/fase_um/one_fase" 	 	 -- fase 1 
+require "functions/fase_dois/two_fase" 		 -- fase 2
+require "functions/fase_tres/three_fase"	 -- fase 3
+require "functions/fase_quatro/four_fase"	 -- fase 4
+require "functions/win" 					 -- tela para venceu
+require "functions/gameOver" 				 -- tela perdeu
+
 
 
 function love.load()
-	--personage
-	unicorn = {}
-	xone = 0
-	yone = 560
-	--personage
---[[
-    -- background
-    fundo = love.graphics.newImage("image/3.jpg")
-    fundoDois = love.graphics.newImage("image/3.jpg")
-
-    planoDeFundo = {
-    x = 0,
-    y = 0,
-    y2 = 0 - fundo : getHeight ()
-
-    }
-    -- background
-]]
-
-
-
-	-- labirinto fase one
-	 labirinto_fase_one()
-	-- labirinto fase one
+	estadoJogo = "menu"
+	menu_load()
 end
 
 
 function love.update(dt)
 
-    --movimento do personagem
-	    move_personage(dt)
-    --movimento do personagem
-
-    -- colisao
-      fase_one_colisao_update(dt)
-    --colisao
-
+	if estadoJogo == "menu" then                --menu
+	   menu_update(dt)							-- menu
+	elseif estadoJogo == "orientacao" then		-- instrução
+		   instruction_update(dt)				-- instrução
+	elseif estadoJogo == "one_fase" then  		-- fase 1
+		onefase_update(dt)						-- fase 1
+	elseif estadoJogo == "two_fase" then		-- fase 2
+		twofase_update(dt)						-- fase 2
+	elseif estadoJogo == "three_fase" then		-- fase 3
+		threefase_update(dt)					-- fase 3
+	elseif estadoJogo == "four_fase" then 		-- fase 4
+		fourfase_update(dt)						-- fase 4
+	elseif estadoJogo == "win" then 			-- vencer
+		win_update(dt)							-- vencer
+	elseif estadoJogo == "gameOver" then		-- perder
+		gameOver_update(dt)						-- perder
+    end
+    
 end
 
 
 function love.draw()
 
-
---[[
---- background
- love.graphics.draw( fundo, planoDeFundo.x, planoDeFundo.y)
- love.graphics.draw( fundoDois, planoDeFundo.x,planoDeFundo.y2 )
--- background
-]]
-	--love.graphics.rectangle( modo, x, y, largura, altura )
-
-
-	-- personagem
-	love.graphics.setColor(255, 255, 255)
-	love.graphics.rectangle("fill", xone,  yone, 32, 32 )
-	--personagem
-
-
-
-	--desenho do lairinto
-	labirinto_fase_one (dt)
-	--love.graphics.rectangle( modo, x, y, largura, altura )
-
+	if estadoJogo == "menu" then			-- menu
+		menu_draw()							-- menu
+	elseif estadoJogo == "orientacao" then 	-- instrução
+		instruction_draw()					-- instrução
+	elseif estadoJogo == "one_fase" then	-- fase 1
+		onefase_draw()						-- fase 1
+	elseif estadoJogo == "two_fase" then	-- fase 2
+		twofase_draw()						-- fase 2
+	elseif estadoJogo == "three_fase" then 	-- fase 3
+		threefase_draw()					-- fase 3
+	elseif estadoJogo == "four_fase" then 	-- fase 4
+		fourfase_draw()						-- fase 4
+	elseif estadoJogo == "win" then			-- vencer
+		win_draw()							-- vencer
+	elseif estadoJogo == "gameOver" then	-- perder
+		gameOver_draw()						-- perder
+	 end
 end
   
-  -- fase_one_colisao.update (dt)
-
-
